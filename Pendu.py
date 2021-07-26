@@ -12,7 +12,7 @@ def main():
     global count # incrément
     global display # sert à afficher le bon nombre de "_" en fonction du mot
     global word # mot à deviner
-    global already_guessed # liste des mots déjà devinés
+    global already_guessed # liste des lettres déjà devinées
     global length # longueur du mot à deviner
     global play_game # input pour jouer ou arreter de jouer
     words_to_guess = ["bonjour", "canape", "vinyl", "zebre", "tomahawk", "clavecin", "printemps", "tambourin",
@@ -48,3 +48,89 @@ def hangman():
     if len(guess.strip()) == 0 or len(guess.strip()) >= 2 or guess <= "9": # si l'input est différent d'une lettre
         print("Mauvaise saisie, veuillez saisir une lettre\n")
         hangman()
+
+    elif guess in word:
+        already_guessed.extend([guess])
+        index = word.find(guess)
+        word = word[:index] + "_" + word[index + 1:]
+        display = display[:index] + guess + display[index + 1:]
+        print(display + "\n")
+
+    elif guess in already_guessed:
+        print("Essayez une autre lettre.\n")
+
+    else:
+        count += 1
+
+        if count == 1:
+            time.sleep(1)
+            print("   _____ \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "__|__\n")
+            print("Mauvais choix... " + str(limit - count) + " essais restants.\n")
+
+        elif count == 2:
+            time.sleep(1)
+            print("   _____ \n"
+                  "  |     | \n"
+                  "  |     |\n"
+                  "  |      \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "__|__\n")
+            print("Mauvais choix... " + str(limit - count) + " essais restants.\n")
+
+        elif count == 3:
+            time.sleep(1)
+            print("   _____ \n"
+                  "  |     | \n"
+                  "  |     |\n"
+                  "  |     | \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "__|__\n")
+            print("Mauvais choix... " + str(limit - count) + " essais restants.\n")
+
+        elif count == 4:
+            time.sleep(1)
+            print("   _____ \n"
+                  "  |     | \n"
+                  "  |     |\n"
+                  "  |     | \n"
+                  "  |     O \n"
+                  "  |      \n"
+                  "  |      \n"
+                  "__|__\n")
+            print("Mauvais choix... dernier essai.\n")
+
+        elif count == 5:
+            time.sleep(1)
+            print("   _____ \n"
+                  "  |     | \n"
+                  "  |     |\n"
+                  "  |     | \n"
+                  "  |     O \n"
+                  "  |    /|\ \n"
+                  "  |    / \ \n"
+                  "__|__\n")
+            print("Mauvais choix. Vous êtes pendu!!!\n")
+            print("Le mot était: ", already_guessed, word)
+            play_again()
+
+    if word == '_' * length:
+        print("Félicitations ! Vous avez trouvé le mot !")
+        play_again()
+
+    elif count != limit:
+        hangman()
+
+    main()
+
+    hangman()
