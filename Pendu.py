@@ -15,5 +15,6 @@ def main():
     global already_guessed
     global length
     global play_game
-
+    words_to_guess = ["bonjour", "canape", "vinyl", "zebre", "tomahawk", "clavecin", "printemps", "tambourin",
+                      "coquelicot", "baccalaureat"]
 
