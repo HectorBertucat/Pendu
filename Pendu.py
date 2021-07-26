@@ -9,12 +9,18 @@ print("Le jeu va commencer...\n C'est parti pour le Pendu !")
 time.sleep(3)
 
 def main():
-    global count
-    global display
-    global word
-    global already_guessed
-    global length
-    global play_game
+    global count # incrément
+    global display # sert à afficher le bon nombre de "_" en fonction du mot
+    global word # mot à deviner
+    global already_guessed # liste des mots déjà devinés
+    global length # longueur du mot à deviner
+    global play_game # input pour jouer ou arreter de jouer
     words_to_guess = ["bonjour", "canape", "vinyl", "zebre", "tomahawk", "clavecin", "printemps", "tambourin",
-                      "coquelicot", "baccalaureat"]
+                      "coquelicot", "baccalaureat"] # liste des mots à deviner
+    word = random.choice(words_to_guess) # choix du mot au hasard depuis la liste
+    length = len(word)
+    count = 0
+    display = '_' * length
+    already_guessed = []
+    play_game = ""
 
