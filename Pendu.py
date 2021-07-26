@@ -24,3 +24,14 @@ def main():
     already_guessed = []
     play_game = ""
 
+def play_again():
+    global play_game
+    play_message = "Voulez-vous jouer à nouveau ? y = Oui, n = Non \n"
+    play_game = input(play_message)
+    while play_game not in ["y", "n", "Y", "N"]:
+        play_game = input(play_message)
+    if play_game == "y":
+        main()
+    elif play_game == "n":
+        print("Merci d'avoir jouer, à bientôt !!")
+        exit()
