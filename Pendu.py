@@ -35,3 +35,16 @@ def play_again():
     elif play_game == "n":
         print("Merci d'avoir jouer, à bientôt !!")
         exit()
+
+def hangman():
+    global count
+    global display
+    global word
+    global already_guessed
+    global play_game
+    limit = 5
+    guess = input("Le mot du pendu est : " + display + " Entrez votre choix: \n")
+    guess = guess.strip()
+    if len(guess.strip()) == 0 or len(guess.strip()) >= 2 or guess <= "9": # si l'input est différent d'une lettre
+        print("Mauvaise saisie, veuillez saisir une lettre\n")
+        hangman()
