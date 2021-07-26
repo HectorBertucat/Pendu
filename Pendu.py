@@ -134,3 +134,6 @@ def hangman():
     main()
 
     hangman()
+
+main()
+hangman()
